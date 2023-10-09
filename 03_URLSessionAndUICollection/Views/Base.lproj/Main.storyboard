@@ -83,7 +83,7 @@
         <!--UserVC-->
         <scene sceneID="KCb-WF-w5p">
             <objects>
-                <viewController storyboardIdentifier="userVCID" id="4Uo-6q-TQl" customClass="userVC" customModule="_3_URLSessionAndUICollection" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="userVCID" id="4Uo-6q-TQl" customClass="UserVC" customModule="_3_URLSessionAndUICollection" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FUY-Db-nCQ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -162,7 +162,7 @@
         <!--FollowerVC-->
         <scene sceneID="hiZ-8Y-14W">
             <objects>
-                <viewController storyboardIdentifier="followerVCID" id="Fy1-O8-vxf" customClass="followerVC" customModule="_3_URLSessionAndUICollection" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="followerVCID" id="Fy1-O8-vxf" customClass="FollowerVC" customModule="_3_URLSessionAndUICollection" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hdE-2f-UBv">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -190,7 +190,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="followerCell" id="Alh-mN-Gji" customClass="followerCollectionViewCell" customModule="_3_URLSessionAndUICollection" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="followerCell" id="Alh-mN-Gji" customClass="FollowerCollectionViewCell" customModule="_3_URLSessionAndUICollection" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="141" height="133"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Sac-eq-4ve">

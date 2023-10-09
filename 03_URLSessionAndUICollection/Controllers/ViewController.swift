@@ -61,7 +61,7 @@ class ViewController: UIViewController {
             var errorMsg = ""
             do {
                 let user = try await getUser()
-                let destVC = storyboard?.instantiateViewController(withIdentifier: userVC.id) as! userVC
+                let destVC = storyboard?.instantiateViewController(withIdentifier: UserVC.id) as! UserVC
                 destVC.user = user
                 navigationController?.pushViewController(destVC, animated: true)
             } catch GHError.invalidURL {
@@ -78,7 +78,7 @@ class ViewController: UIViewController {
                 print("unexpected error")
             }
             if (!errorMsg.isEmpty) {
-                myAlert.showAlert(alertModel: AlertModel(title: "Failure", msg: errorMsg, viewController: self))
+                MyAlert.showAlert(alertModel: AlertModel(title: "Failure", msg: errorMsg, viewController: self))
             }
         }
     }

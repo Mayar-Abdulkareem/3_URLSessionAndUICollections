@@ -7,7 +7,7 @@
 
 import UIKit
 
-class followerVC: UIViewController, UISearchBarDelegate{
+class FollowerVC: UIViewController, UISearchBarDelegate{
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -21,8 +21,6 @@ class followerVC: UIViewController, UISearchBarDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        //searchBar.showsCancelButton = true
-        
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -59,17 +57,16 @@ class followerVC: UIViewController, UISearchBarDelegate{
     
 }
 
-extension followerVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension FollowerVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return (searchBar.text?.count ?? 0 == 0) ? followers.count : filteredFollowers.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: followerCollectionViewCell.id, for: indexPath) as! followerCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FollowerCollectionViewCell.id, for: indexPath) as! FollowerCollectionViewCell
         
         let follower = (searchBar.text?.count ?? 0 == 0) ? followers[indexPath.row] : filteredFollowers[indexPath.row]
-        //let follower = filteredFollowers[indexPath.row]
         let followerModel = FollowerCellModel(name: follower.login, avatarUrl: follower.avatarUrl, vc: self)
         cell.configureCell(model: followerModel)
         return cell

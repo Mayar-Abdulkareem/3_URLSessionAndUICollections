@@ -14,7 +14,7 @@ struct AlertModel {
     let viewController: UIViewController
 }
 
-struct myAlert {
+struct MyAlert {
     static func showAlert(alertModel: AlertModel) {
         let alertController = UIAlertController(title: alertModel.title, message: alertModel.msg, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { (_) in

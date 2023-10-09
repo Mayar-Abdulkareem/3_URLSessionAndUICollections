@@ -10,10 +10,10 @@ import UIKit
 struct FollowerCellModel {
     let name: String
     let avatarUrl: String
-    let vc: followerVC
+    let vc: FollowerVC
 }
 
-class followerCollectionViewCell: UICollectionViewCell {
+class FollowerCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var followerImg: UIImageView!
     @IBOutlet weak var followerName: UILabel!
@@ -36,7 +36,7 @@ class followerCollectionViewCell: UICollectionViewCell {
             do {
                 followerImg.image = try await RoundedImageView.loadImageFromURLAsync(model.avatarUrl)
             } catch {
-                myAlert.showAlert(alertModel: AlertModel(title: "Failure", msg: "Invalid Data", viewController: model.vc))
+                MyAlert.showAlert(alertModel: AlertModel(title: "Failure", msg: "Invalid Data", viewController: model.vc))
             }
         }
     }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class userVC: UIViewController {
+class UserVC: UIViewController {
     
     static let id = "userVCID"
     var user: GitHubUser!
@@ -21,7 +21,7 @@ class userVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        myAlert.showAlert(alertModel: AlertModel(title: "Success", msg: "User Fetched successfully", viewController: self))
+        MyAlert.showAlert(alertModel: AlertModel(title: "Success", msg: "User Fetched successfully", viewController: self))
         fetchImage()
         configureUI()
     }
@@ -32,7 +32,7 @@ class userVC: UIViewController {
             do {
                 avatarImage.image = try await RoundedImageView.loadImageFromURLAsync(user.avatarUrl)
             } catch {
-                myAlert.showAlert(alertModel: AlertModel(title: "Failure", msg: "Invalid Data", viewController: self))
+                MyAlert.showAlert(alertModel: AlertModel(title: "Failure", msg: "Invalid Data", viewController: self))
             }
         }
     }
@@ -78,7 +78,7 @@ class userVC: UIViewController {
             var errorMsg = ""
             do {
                 self.followers = try await getFollowers()
-                let destVC = storyboard?.instantiateViewController(withIdentifier: followerVC.id) as! followerVC
+                let destVC = storyboard?.instantiateViewController(withIdentifier: FollowerVC.id) as! FollowerVC
                 destVC.followers = self.followers
                 navigationController?.pushViewController(destVC, animated: true)
             } catch GHError.invalidURL {
@@ -95,7 +95,7 @@ class userVC: UIViewController {
                 print("unexpected error")
             }
             if (!errorMsg.isEmpty) {
-                myAlert.showAlert(alertModel: AlertModel(title: "Failure", msg: errorMsg, viewController: self))
+                MyAlert.showAlert(alertModel: AlertModel(title: "Failure", msg: errorMsg, viewController: self))
             }
         }
     }
