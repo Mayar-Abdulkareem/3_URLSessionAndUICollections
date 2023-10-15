@@ -50,9 +50,6 @@
                                     <action selector="submitBtnTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="asU-64-7PT"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="rDe-rx-LSw">
-                                <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
-                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -64,15 +61,12 @@
                             <constraint firstItem="vLL-6X-ECX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="QuK-sF-ozx"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vLL-6X-ECX" secondAttribute="trailing" constant="50" id="ZCZ-2s-HyY"/>
                             <constraint firstItem="vLL-6X-ECX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="bMw-Ec-rw6"/>
-                            <constraint firstItem="rDe-rx-LSw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="coU-Lg-c1e"/>
-                            <constraint firstItem="rDe-rx-LSw" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="fta-sS-zgM"/>
                             <constraint firstItem="wGn-PD-Kyv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="wh1-FC-iYP"/>
                             <constraint firstItem="PDf-cD-FKP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="ycm-wo-f6z"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="GitHub" id="3Uh-Jn-jeq"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="rDe-rx-LSw" id="pW7-R3-Ieh"/>
                         <outlet property="userName" destination="3LB-l2-jX9" id="2L3-W6-szn"/>
                     </connections>
                 </viewController>
@@ -197,11 +191,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="141" height="133"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NgS-nu-uuf" customClass="RoundedImageView" customModule="_3_URLSessionAndUICollection" customModuleProvider="target">
-                                                    <rect key="frame" x="35.666666666666657" y="10" width="70" height="73"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NgS-nu-uuf" customClass="RoundedImageView" customModule="_3_URLSessionAndUICollection" customModuleProvider="target">
+                                                    <rect key="frame" x="31.666666666666664" y="10" width="77.666666666666686" height="73"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8jk-xR-DfB">
-                                                    <rect key="frame" x="8" y="93" width="125" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8jk-xR-DfB">
+                                                    <rect key="frame" x="8" y="88" width="125" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="xT5-7h-onP"/>
                                                     </constraints>
@@ -214,6 +208,8 @@
                                                 <constraint firstItem="8jk-xR-DfB" firstAttribute="leading" secondItem="Sac-eq-4ve" secondAttribute="leading" constant="8" id="3oS-nQ-JLQ"/>
                                                 <constraint firstAttribute="trailing" secondItem="8jk-xR-DfB" secondAttribute="trailing" constant="8" id="JFr-RJ-DcC"/>
                                                 <constraint firstItem="NgS-nu-uuf" firstAttribute="centerX" secondItem="Sac-eq-4ve" secondAttribute="centerX" id="YU4-E4-OWS"/>
+                                                <constraint firstItem="NgS-nu-uuf" firstAttribute="width" secondItem="Sac-eq-4ve" secondAttribute="width" multiplier="0.55" id="afT-Lk-FtX"/>
+                                                <constraint firstItem="NgS-nu-uuf" firstAttribute="height" secondItem="Sac-eq-4ve" secondAttribute="height" multiplier="0.55" id="t9H-yQ-S0u"/>
                                                 <constraint firstItem="8jk-xR-DfB" firstAttribute="top" secondItem="NgS-nu-uuf" secondAttribute="bottom" constant="5" id="tCm-c9-3ML"/>
                                                 <constraint firstItem="NgS-nu-uuf" firstAttribute="top" secondItem="Sac-eq-4ve" secondAttribute="top" constant="10" id="tPA-7x-Bht"/>
                                             </constraints>

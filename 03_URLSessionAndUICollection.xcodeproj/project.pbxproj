@@ -17,11 +17,12 @@
 		2F5C29802ACAEF2F0027CC94 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C297F2ACAEF2F0027CC94 /* RoundedImageView.swift */; };
 		2F5C29822ACAFBDC0027CC94 /* GitHubUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C29812ACAFBDC0027CC94 /* GitHubUserModel.swift */; };
 		2F5C29842ACAFF820027CC94 /* ErrorsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C29832ACAFF820027CC94 /* ErrorsModel.swift */; };
-		2F5C298A2ACB1F980027CC94 /* MyAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C29892ACB1F980027CC94 /* MyAlert.swift */; };
 		2F5C298C2ACB21CA0027CC94 /* UserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C298B2ACB21CA0027CC94 /* UserVC.swift */; };
 		2F5C298E2ACB22820027CC94 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C298D2ACB22820027CC94 /* Constants.swift */; };
 		2F5C29902ACB5A400027CC94 /* FollowerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C298F2ACB5A400027CC94 /* FollowerVC.swift */; };
 		2F5C29922ACBF2CC0027CC94 /* FollowerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C29912ACBF2CC0027CC94 /* FollowerCollectionViewCell.swift */; };
+		2F5C2A262AD591630027CC94 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C2A252AD591620027CC94 /* BaseViewController.swift */; };
+		2F5C2A282AD59BD40027CC94 /* ApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C2A272AD59BD40027CC94 /* ApiHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,11 +38,12 @@
 		2F5C297F2ACAEF2F0027CC94 /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		2F5C29812ACAFBDC0027CC94 /* GitHubUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserModel.swift; sourceTree = "<group>"; };
 		2F5C29832ACAFF820027CC94 /* ErrorsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorsModel.swift; sourceTree = "<group>"; };
-		2F5C29892ACB1F980027CC94 /* MyAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAlert.swift; sourceTree = "<group>"; };
 		2F5C298B2ACB21CA0027CC94 /* UserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVC.swift; sourceTree = "<group>"; };
 		2F5C298D2ACB22820027CC94 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2F5C298F2ACB5A400027CC94 /* FollowerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerVC.swift; sourceTree = "<group>"; };
 		2F5C29912ACBF2CC0027CC94 /* FollowerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerCollectionViewCell.swift; sourceTree = "<group>"; };
+		2F5C2A252AD591620027CC94 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		2F5C2A272AD59BD40027CC94 /* ApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +95,6 @@
 			children = (
 				2F5C29812ACAFBDC0027CC94 /* GitHubUserModel.swift */,
 				2F5C29832ACAFF820027CC94 /* ErrorsModel.swift */,
-				2F5C29892ACB1F980027CC94 /* MyAlert.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -102,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				2F5C29692ACAE9690027CC94 /* Main.storyboard */,
+				2F5C297F2ACAEF2F0027CC94 /* RoundedImageView.swift */,
 				2F5C29912ACBF2CC0027CC94 /* FollowerCollectionViewCell.swift */,
 			);
 			path = Views;
@@ -111,7 +113,8 @@
 			isa = PBXGroup;
 			children = (
 				2F5C29672ACAE9690027CC94 /* ViewController.swift */,
-				2F5C297F2ACAEF2F0027CC94 /* RoundedImageView.swift */,
+				2F5C2A252AD591620027CC94 /* BaseViewController.swift */,
+				2F5C2A272AD59BD40027CC94 /* ApiHandler.swift */,
 				2F5C298B2ACB21CA0027CC94 /* UserVC.swift */,
 				2F5C298F2ACB5A400027CC94 /* FollowerVC.swift */,
 			);
@@ -189,6 +192,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F5C2A262AD591630027CC94 /* BaseViewController.swift in Sources */,
 				2F5C29922ACBF2CC0027CC94 /* FollowerCollectionViewCell.swift in Sources */,
 				2F5C29682ACAE9690027CC94 /* ViewController.swift in Sources */,
 				2F5C29802ACAEF2F0027CC94 /* RoundedImageView.swift in Sources */,
@@ -199,7 +203,7 @@
 				2F5C29902ACB5A400027CC94 /* FollowerVC.swift in Sources */,
 				2F5C296E2ACAE9690027CC94 /* _3_URLSessionAndUICollection.xcdatamodeld in Sources */,
 				2F5C29662ACAE9690027CC94 /* SceneDelegate.swift in Sources */,
-				2F5C298A2ACB1F980027CC94 /* MyAlert.swift in Sources */,
+				2F5C2A282AD59BD40027CC94 /* ApiHandler.swift in Sources */,
 				2F5C29842ACAFF820027CC94 /* ErrorsModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UserVC: UIViewController {
+class UserVC: BaseViewController {
     
     static let id = "userVCID"
     var user: GitHubUser!
@@ -21,18 +21,16 @@ class UserVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        MyAlert.showAlert(alertModel: AlertModel(title: "Success", msg: "User Fetched successfully", viewController: self))
         fetchImage()
         configureUI()
     }
     
-    
     private func fetchImage() {
         Task{
             do {
-                avatarImage.image = try await RoundedImageView.loadImageFromURLAsync(user.avatarUrl)
+                avatarImage.image = try await ApiHandler.sharedInstance.loadImageFromURLAsync(user.avatarUrl)
             } catch {
-                MyAlert.showAlert(alertModel: AlertModel(title: "Failure", msg: "Invalid Data", viewController: self))
+                print("Error loading the image")
             }
         }
     }
@@ -43,41 +41,11 @@ class UserVC: UIViewController {
         countLabel.text = "\(user.name) has \(user.followers) followers"
     }
     
-    private func getFollowers() async throws -> [GitHubFollower] {
-        guard let followerURL = URL(string: user.followersUrl) else {
-            throw GHError.invalidURL
-        }
-        
-        do {
-            let (data, response) = try await URLSession.shared.data(from: followerURL)
-            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-                switch (response as? HTTPURLResponse)?.statusCode {
-                case 404: throw GHError.resourceNotFound
-                case 422: throw GHError.validationFailed
-                default: throw GHError.invalidResponse
-                }
-            }
-            
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            do {
-                return try decoder.decode([GitHubFollower].self, from: data)
-            } catch {
-                let dataString = String(data: data, encoding: .utf8)
-                print("Error decoding data: \(error)")
-                print("JSON Data: \(dataString ?? "N/A")")
-                throw error
-            }
-        } catch {
-            throw GHError.invalidData
-        }
-    }
-    
-    private func fetchFollowers() {
+    @IBAction func getFollowersBtnTapped(_ sender: Any) {
         Task {
             var errorMsg = ""
             do {
-                self.followers = try await getFollowers()
+                self.followers = try await ApiHandler.sharedInstance.getFollowers(url: user.followersUrl)
                 let destVC = storyboard?.instantiateViewController(withIdentifier: FollowerVC.id) as! FollowerVC
                 destVC.followers = self.followers
                 navigationController?.pushViewController(destVC, animated: true)
@@ -95,13 +63,9 @@ class UserVC: UIViewController {
                 print("unexpected error")
             }
             if (!errorMsg.isEmpty) {
-                MyAlert.showAlert(alertModel: AlertModel(title: "Failure", msg: errorMsg, viewController: self))
+                self.showAlert(alertModel: AlertModel(title: "Failure", msg: errorMsg))
             }
         }
-    }
-    
-    @IBAction func getFollowersBtnTapped(_ sender: Any) {
-        fetchFollowers()
     }
     
 }

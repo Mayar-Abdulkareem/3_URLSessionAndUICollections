@@ -10,7 +10,6 @@ import UIKit
 struct FollowerCellModel {
     let name: String
     let avatarUrl: String
-    let vc: FollowerVC
 }
 
 class FollowerCollectionViewCell: UICollectionViewCell {
@@ -19,7 +18,6 @@ class FollowerCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var followerName: UILabel!
     
     @IBOutlet weak var imgHeight: NSLayoutConstraint!
-    
     @IBOutlet weak var imgWidth: NSLayoutConstraint!
     
     static var id = "followerCell"
@@ -34,10 +32,10 @@ class FollowerCollectionViewCell: UICollectionViewCell {
         followerName.text = model.name
         Task{
             do {
-                followerImg.image = try await RoundedImageView.loadImageFromURLAsync(model.avatarUrl)
+                followerImg.image = try await ApiHandler.sharedInstance.loadImageFromURLAsync(model.avatarUrl)
             } catch {
-                MyAlert.showAlert(alertModel: AlertModel(title: "Failure", msg: "Invalid Data", viewController: model.vc))
             }
         }
     }
+    
 }
