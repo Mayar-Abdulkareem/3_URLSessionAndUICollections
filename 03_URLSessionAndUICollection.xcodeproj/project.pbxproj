@@ -93,6 +93,7 @@
 		2F5C297A2ACAE9910027CC94 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2F5C2A272AD59BD40027CC94 /* ApiHandler.swift */,
 				2F5C29812ACAFBDC0027CC94 /* GitHubUserModel.swift */,
 				2F5C29832ACAFF820027CC94 /* ErrorsModel.swift */,
 			);
@@ -114,7 +115,6 @@
 			children = (
 				2F5C29672ACAE9690027CC94 /* ViewController.swift */,
 				2F5C2A252AD591620027CC94 /* BaseViewController.swift */,
-				2F5C2A272AD59BD40027CC94 /* ApiHandler.swift */,
 				2F5C298B2ACB21CA0027CC94 /* UserVC.swift */,
 				2F5C298F2ACB5A400027CC94 /* FollowerVC.swift */,
 			);
