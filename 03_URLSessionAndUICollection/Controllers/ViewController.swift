@@ -15,6 +15,7 @@ class ViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureActivityIndicator()
     }
     
     private func configureActivityIndicator() {
@@ -23,22 +24,20 @@ class ViewController: BaseViewController {
         view.addSubview(activityIndicator)
     }
     
-    private func activateActivityIndicator(isActive: Bool) {
-        if isActive {
-            activityIndicator.startAnimating()
-        } else {
-            activityIndicator.stopAnimating()
-        }
+    private func showActivityIndicator() {
+        activityIndicator.startAnimating()
+    }
+    
+    private func hideActivityIndicator() {
+        activityIndicator.stopAnimating()
     }
     
     @IBAction func submitBtnTapped(_ sender: Any) {
         Task {
             var errorMsg = ""
+            showActivityIndicator()
             do {
-                configureActivityIndicator()
-                activateActivityIndicator(isActive: true)
                 let user = try await ApiHandler.sharedInstance.getUser(userName: userName.text ?? "SAllen0400")
-                activateActivityIndicator(isActive: false)
                 let destVC = storyboard?.instantiateViewController(withIdentifier: UserVC.id) as! UserVC
                 destVC.user = user
                 navigationController?.pushViewController(destVC, animated: true)
@@ -58,6 +57,7 @@ class ViewController: BaseViewController {
             if (!errorMsg.isEmpty) {
                 self.showAlert(alertModel: AlertModel(title: "Failure", msg: errorMsg))
             }
+            hideActivityIndicator()
         }
     }
     
