@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: BaseViewController {
+class ViewController: UIViewController {
     
     @IBOutlet weak var userName: UITextField!
     
@@ -61,6 +61,21 @@ class ViewController: BaseViewController {
         }
     }
     
+}
+
+struct AlertModel {
+    let title: String
+    let msg: String
+}
+
+extension UIViewController {
+    func showAlert(alertModel: AlertModel) {
+        let alertController = UIAlertController(title: alertModel.title, message: alertModel.msg, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+        }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
 }
 
 

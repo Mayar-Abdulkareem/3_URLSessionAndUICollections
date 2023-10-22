@@ -14,28 +14,24 @@ struct FollowerCellModel {
 
 class FollowerCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var followerImg: UIImageView!
     @IBOutlet weak var followerName: UILabel!
-    
-    @IBOutlet weak var imgHeight: NSLayoutConstraint!
-    @IBOutlet weak var imgWidth: NSLayoutConstraint!
+    @IBOutlet weak var followerImage: RoundedImageView!
     
     static var id = "followerCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        followerImg.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.55).isActive = true
-        followerImg.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.55).isActive = true
     }
     
-    func configureCell(model: FollowerCellModel) {
+    func configureCell(with model: FollowerCellModel) {
         followerName.text = model.name
-        Task{
+        Task {
             do {
-                followerImg.image = try await ApiHandler.sharedInstance.loadImageFromURLAsync(model.avatarUrl)
+                try await followerImage.image = ApiHandler.sharedInstance.loadImageFromURLAsync(model.avatarUrl)
             } catch {
+                print("error")
             }
         }
     }
-    
+
 }

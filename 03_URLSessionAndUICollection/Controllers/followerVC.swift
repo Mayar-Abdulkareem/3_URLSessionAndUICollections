@@ -42,7 +42,7 @@ extension FollowerVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         }
         let follower = !isSearching ? followers[indexPath.row] : filteredFollowers[indexPath.row]
         let followerModel = FollowerCellModel(name: follower.login, avatarUrl: follower.avatarUrl)
-        cell?.configureCell(model: followerModel)
+        cell?.configureCell(with: followerModel)
         return cell ?? UICollectionViewCell()
     }
     

@@ -216,7 +216,7 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="141" height="133"/>
                                         <connections>
-                                            <outlet property="followerImg" destination="NgS-nu-uuf" id="hvP-Yw-UJ5"/>
+                                            <outlet property="followerImage" destination="NgS-nu-uuf" id="f3d-lF-DRO"/>
                                             <outlet property="followerName" destination="8jk-xR-DfB" id="P2u-Pg-2Kn"/>
                                         </connections>
                                     </collectionViewCell>
