@@ -16,7 +16,9 @@ class FollowerVC: UIViewController {
     static var id = "followerVCID"
     var followers: [GitHubFollower]!
     var filteredFollowers: [GitHubFollower] = []
-    let searchController = UISearchController()
+    var isSearching: Bool {
+        return searchBar.text?.count ?? 0 != 0
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,19 +29,15 @@ class FollowerVC: UIViewController {
 
 extension FollowerVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    var isSearching: Bool {
-        return searchBar.text?.count ?? 0 != 0
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return !isSearching ? followers.count : filteredFollowers.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FollowerCollectionViewCell.id, for: indexPath) as? FollowerCollectionViewCell
-        if ((isSearching && indexPath.row >= filteredFollowers.count) || (!isSearching && indexPath.row >= followers.count)) {
+        guard ((isSearching && indexPath.row < filteredFollowers.count) || (!isSearching && indexPath.row < followers.count)) else {
             return UICollectionViewCell()
         }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FollowerCollectionViewCell.id, for: indexPath) as? FollowerCollectionViewCell
         let follower = !isSearching ? followers[indexPath.row] : filteredFollowers[indexPath.row]
         let followerModel = FollowerCellModel(name: follower.login, avatarUrl: follower.avatarUrl)
         cell?.configureCell(with: followerModel)
@@ -57,14 +55,13 @@ extension FollowerVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 2, bottom: 0, right: 2)
     }
-    
 }
 
 extension FollowerVC: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchBar.showsCancelButton = true
-        if (searchText.count == 0) {
+        guard searchText.count != 0 else {
             clearAndShowAllFollowers()
             return
         }
@@ -87,6 +84,5 @@ extension FollowerVC: UISearchBarDelegate {
         searchBar.text = ""
         filteredFollowers.removeAll()
         collectionView.reloadData()
-    }
-    
+    }    
 }

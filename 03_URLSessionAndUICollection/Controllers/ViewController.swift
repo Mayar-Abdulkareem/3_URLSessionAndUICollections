@@ -11,16 +11,15 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var userName: UITextField!
     
-    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
+    private var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureActivityIndicator()
     }
     
     private func configureActivityIndicator() {
         activityIndicator.center = view.center
-        activityIndicator.hidesWhenStopped =  true
+        activityIndicator.hidesWhenStopped = true
         view.addSubview(activityIndicator)
     }
     
@@ -35,21 +34,26 @@ class ViewController: UIViewController {
     @IBAction func submitBtnTapped(_ sender: Any) {
         Task {
             var errorMsg = ""
+            configureActivityIndicator()
             showActivityIndicator()
             do {
                 let user = try await ApiHandler.sharedInstance.getUser(userName: userName.text ?? "SAllen0400")
-                let destVC = storyboard?.instantiateViewController(withIdentifier: UserVC.id) as! UserVC
-                destVC.user = user
-                navigationController?.pushViewController(destVC, animated: true)
-            } catch GHError.invalidURL {
+                let destVC = storyboard?.instantiateViewController(withIdentifier: UserVC.id) as? UserVC
+                destVC?.user = user
+                if let navigationController = self.navigationController, let userVC = destVC {
+                    navigationController.pushViewController(userVC, animated: true)
+                } else {
+                    self.showAlert(alertModel: AlertModel(title: "Failure", msg: "Failed to push the UserVC."))
+                }
+            } catch Errors.invalidURL {
                 errorMsg = "invalid URL"
-            } catch GHError.resourceNotFound {
+            } catch Errors.resourceNotFound {
                 errorMsg = "Resource not found"
-            } catch GHError.validationFailed {
+            } catch Errors.validationFailed {
                 errorMsg = "Validation Faild"
-            } catch GHError.invalidResponse {
+            } catch Errors.invalidResponse {
                 errorMsg = "invalid response"
-            } catch GHError.invalidData {
+            } catch Errors.invalidData {
                 errorMsg = "invalid data"
             } catch {
                 print("unexpected error")
@@ -59,22 +63,6 @@ class ViewController: UIViewController {
             }
             hideActivityIndicator()
         }
-    }
-    
-}
-
-struct AlertModel {
-    let title: String
-    let msg: String
-}
-
-extension UIViewController {
-    func showAlert(alertModel: AlertModel) {
-        let alertController = UIAlertController(title: alertModel.title, message: alertModel.msg, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
-        }
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
     }
 }
 

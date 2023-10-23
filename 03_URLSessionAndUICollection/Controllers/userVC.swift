@@ -9,55 +9,61 @@ import UIKit
 
 class UserVC: UIViewController {
     
-    static let id = "userVCID"
-    var user: GitHubUser!
-    var followersCount: Int = 0
-    var followers: [GitHubFollower] = []
-    
     @IBOutlet weak var avatarImage: RoundedImageView!
     @IBOutlet weak var loginName: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
     @IBOutlet weak var countLabel: UILabel!
     
+    static let id = "userVCID"
+    var user: GitHubUser!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchImage()
-        configureUI()
+        configureUILabel()
     }
     
     private func fetchImage() {
         Task{
             do {
-                avatarImage.image = try await ApiHandler.sharedInstance.loadImageFromURLAsync(user.avatarUrl)
+                avatarImage.image = try await ImageUtility.shared.loadImageFromURLAsync(user.avatarUrl)
             } catch {
                 print("Error loading the image")
             }
         }
     }
     
-    private func configureUI() {
+    private func configureUILabel() {
         loginName.text = user.name
         bioLabel.text = user.bio
-        countLabel.text = "\(user.name) has \(user.followers) followers"
+        
+        let attributedText = NSMutableAttributedString(string: "\(user.name) has \(user.followers) followers")
+        let range = (attributedText.string as NSString).range(of: String(user.followers))
+        attributedText.addAttributes([.font: UIFont.boldSystemFont(ofSize: 16)], range: range)
+        countLabel.attributedText = attributedText
     }
     
     @IBAction func getFollowersBtnTapped(_ sender: Any) {
         Task {
             var errorMsg = ""
             do {
-                self.followers = try await ApiHandler.sharedInstance.getFollowers(url: user.followersUrl)
-                let destVC = storyboard?.instantiateViewController(withIdentifier: FollowerVC.id) as! FollowerVC
-                destVC.followers = self.followers
-                navigationController?.pushViewController(destVC, animated: true)
-            } catch GHError.invalidURL {
+                let followers = try await ApiHandler.sharedInstance.getFollowers(url: user.followersUrl)
+                let destVC = storyboard?.instantiateViewController(withIdentifier: FollowerVC.id) as? FollowerVC
+                destVC?.followers = followers
+                if let navigationController = self.navigationController, let followerVC = destVC {
+                    navigationController.pushViewController(followerVC, animated: true)
+                } else {
+                    self.showAlert(alertModel: AlertModel(title: "Failure", msg: "Failed to push the followerVC."))
+                }
+            } catch Errors.invalidURL {
                 errorMsg = "invalid URL"
-            } catch GHError.resourceNotFound {
+            } catch Errors.resourceNotFound {
                 errorMsg = "Resource not found"
-            } catch GHError.validationFailed {
+            } catch Errors.validationFailed {
                 errorMsg = "Validation Faild"
-            } catch GHError.invalidResponse {
+            } catch Errors.invalidResponse {
                 errorMsg = "invalid response"
-            } catch GHError.invalidData {
+            } catch Errors.invalidData {
                 errorMsg = "invalid data"
             } catch {
                 print("unexpected error")

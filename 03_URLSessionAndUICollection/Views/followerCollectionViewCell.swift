@@ -27,7 +27,7 @@ class FollowerCollectionViewCell: UICollectionViewCell {
         followerName.text = model.name
         Task {
             do {
-                try await followerImage.image = ApiHandler.sharedInstance.loadImageFromURLAsync(model.avatarUrl)
+                try await followerImage.image = ImageUtility.shared.loadImageFromURLAsync(model.avatarUrl)
             } catch {
                 print("error")
             }
